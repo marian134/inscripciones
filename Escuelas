@@ -1,0 +1,37 @@
+namespace SGE\ApiBundle\Controller;
+
+use FOS\RestBundle\Controller\Annotations\Get;
+use FOS\RestBundle\Controller\Annotations\NamePrefix;
+use FOS\RestBundle\Controller\Annotations\Prefix;
+use FOS\RestBundle\Controller\Annotations\QueryParam;
+use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Request\ParamFetcher;
+
+/**
+ * @Prefix("v1")
+ * @NamePrefix("api_1_")
+ */
+class EscuelasController extends FOSRestController
+{
+
+    private function getEscuelaManager()
+    {
+        return $this->container->get('sge_api.escuela_manager');
+    }
+
+    /**
+     * @Get("/io_establecimientos")
+     * @QueryParam(name="offset", requirements="\d+", strict=true, description="offset en formato timestamp.")
+     */
+    public function getEscuelasAction(ParamFetcher $params)
+    {
+
+        $escuelaManager = $this->getEscuelaManager();
+        $escuelas = $escuelaManager->getEscuelasByOffset($params->get('offset'));
+
+        $data['results'] = $escuelas;
+        $data['metadata']['result_set']['count'] = $escuelas->count();
+        $data['metadata']['result_set']['offset'] = $escuelas->count() > 0 ? $escuelas->last()->getUltimaActualizacion(): $params->get('offset');
+        return $data;
+
+    }
