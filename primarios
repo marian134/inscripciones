@@ -1,0 +1,99 @@
+sge_escuelas_verdes:
+    resource: "@SGEEscuelasVerdesBundle/Resources/config/routing.yml"
+    prefix:   /escuelasverdes
+
+sge_alumno:
+    resource: "@SGEAlumnoBundle/Resources/config/routing.yml"
+    prefix:   /admin/alumnos
+
+sge_reporte_administrativo:
+    resource: "@SGEReporteBundle/Resources/config/routing.yml"
+    prefix:   /admin/reporteadm
+
+
+sge_security:
+    resource: "@SGESecurityBundle/Resources/config/routing.yml"
+    prefix:   /
+
+homepage:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: welcome
+        permanent: true
+        
+admin:
+    path: /admin
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: sge_user_list
+        permanent: true
+
+sge_role:
+    resource: "@SGESecurityBundle/Resources/config/routing.yml"
+    prefix:   /admin/roles
+
+sge_api:
+    type: rest
+    prefix: /api
+    resource: "@SGEApiBundle/Resources/config/routing.yml"
+        
+sge_establecimiento:
+    resource: "@SGEEstablecimientoBundle/Resources/config/routing.yml"
+    prefix:   /admin/establecimiento
+    
+sge_anexos:
+    resource: "@SGEEstablecimientoBundle/Controller/AnexoController.php"  
+    type: annotation    
+    
+sge_planes:
+    resource: "@SGEEstablecimientoBundle/Controller/PlanesDeEstudioController.php"
+    type: annotation
+
+sge_programas:
+    resource: "@SGEEstablecimientoBundle/Controller/ProgramaController.php"
+    type: annotation
+
+sge_reportes:
+    resource: "@SGEEstablecimientoBundle/Controller/ReporteController.php"
+    type: annotation
+    
+sge_supervision:
+    resource: "@SGEEstablecimientoBundle/Controller/SupervisionController.php"
+    type: annotation 
+
+sge_cicloslectivos:
+    resource: "@SGEEstablecimientoBundle/Controller/CicloLectivoController.php"
+    type: annotation 
+
+sge_titulos:
+    resource: "@SGEEstablecimientoBundle/Controller/TituloController.php"
+    type: annotation 
+
+sge_solicitud_puesto_seccion:
+    resource: "@SGEEstablecimientoBundle/Controller/SolicitudPuestoSeccionController.php"
+    type: annotation
+
+sge_prepof:
+    resource: "@SGEEstablecimientoBundle/Controller/PrePofController.php"
+    type: annotation
+
+sge_unidad_organizativa:
+    resource: "@SGEEstablecimientoBundle/Controller/UnidadOrganizativaController.php"
+    type: annotation
+
+sge_establecimiento_servicio:
+        resource: "@SGEEstablecimientoBundle/Controller/EstablecimientoServicioController.php"
+        type: annotation
+
+sge_resoluciones_pof:
+        resource: "@SGEEstablecimientoBundle/Controller/ResolucionesPofController.php"
+        type: annotation
+
+sge_actualizacion_pof:
+        resource: "@SGEEstablecimientoBundle/Controller/ActualizacionPofController.php"
+        type: annotation
+
+sge_user:
+    resource: "@SGESecurityBundle/Resources/config/routing.yml"
+    prefix:   /admin/users
